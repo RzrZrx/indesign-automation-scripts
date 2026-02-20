@@ -4,11 +4,12 @@
 //
 // Top to bottom layer structure:
 // 1. Thumbnail
-// 2. Dieline / Cut (Non-printing)
-// 3. Guides (Non-printing)
-// 4. Artwork
-// 5. Placebox - Autoloading the one up file
-// 6. Background / Paper
+// 2. kiss-cut
+// 3. die-cut
+// 4. Guides (Non-printing)
+// 5. Artwork
+// 6. Placebox - Autoloading the one up file
+// 7. Background / Paper
 
 (function () {
     // Ensure a document is open
@@ -19,18 +20,33 @@
 
     var doc = app.activeDocument;
 
-    // --- Add Dieline Spot Color ---
-    var dielineColorName = "Dieline";
-    var dielineColor = doc.colors.itemByName(dielineColorName);
+    // --- Add kiss-cut Spot Color ---
+    var kissCutColorName = "kiss-cut";
+    var kissCutColor = doc.colors.itemByName(kissCutColorName);
 
     // Check if the color already exists
-    if (!dielineColor.isValid) {
+    if (!kissCutColor.isValid) {
         // Create the new color
-        dielineColor = doc.colors.add({
-            name: dielineColorName,
+        kissCutColor = doc.colors.add({
+            name: kissCutColorName,
             model: ColorModel.SPOT,
             space: ColorSpace.CMYK,
             colorValue: [100, 0, 0, 0] // 100% Cyan
+        });
+    }
+
+    // --- Add die-cut Spot Color ---
+    var dieCutColorName = "die-cut";
+    var dieCutColor = doc.colors.itemByName(dieCutColorName);
+
+    // Check if the color already exists
+    if (!dieCutColor.isValid) {
+        // Create the new color
+        dieCutColor = doc.colors.add({
+            name: dieCutColorName,
+            model: ColorModel.SPOT,
+            space: ColorSpace.CMYK,
+            colorValue: [0, 100, 0, 0] // 100% Magenta
         });
     }
 
@@ -38,7 +54,8 @@
     // You can customize the name, color, and whether it prints or not
     var standardLayers = [
         { name: "Thumbnail", color: UIColors.YELLOW, printable: true, locked: false },
-        { name: "Dieline / Cut", color: UIColors.RED, printable: true, locked: true },
+        { name: "kiss-cut", color: UIColors.RED, printable: true, locked: true },
+        { name: "die-cut", color: UIColors.ORANGE, printable: true, locked: true },
         { name: "Guides", color: UIColors.CYAN, printable: false, locked: true },
         { name: "Artwork", color: UIColors.GREEN, printable: true, locked: false },
         { name: "Placebox - Autoloading the one up file", color: UIColors.MAGENTA, printable: true, locked: false },
