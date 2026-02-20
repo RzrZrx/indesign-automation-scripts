@@ -3,7 +3,7 @@
 A collection of Adobe InDesign ExtendScripts (`.jsx`) for automating common layout and production tasks.
 
 ## 1. Remove Plugin Dependencies
-`RemovePluginDependencies.jsx`
+`scripts/RemovePluginDependencies.jsx`
 
 When you open an InDesign file that uses a plugin you do not have installed, InDesign typically displays a "Missing Plugins" warning. This script bypasses those warnings, silently exports the document to IDML format (which strips out unknown plugin data), and then immediately re-imports and saves it as a clean `.indd` file.
 
@@ -18,7 +18,7 @@ When you open an InDesign file that uses a plugin you do not have installed, InD
 ---
 
 ## 2. Create Standard Layers
-`CreateStandardLayers.jsx`
+`scripts/CreateStandardLayers.jsx`
 
 Automates the creation of a standard, organized set of layers in the active InDesign document. If a layer already exists, the script will color-code it and arrange it in the correct stacking order.
 
