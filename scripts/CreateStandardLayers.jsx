@@ -72,8 +72,8 @@
         { name: "Kiss-cut", color: UIColors.CYAN, printable: true, locked: true, visible: true },
         { name: "Die-cut", color: UIColors.MAGENTA, printable: true, locked: true, visible: true },
         { name: "Guides", color: UIColors.ORANGE, printable: false, locked: true, visible: true },
-        { name: "Artwork", color: UIColors.GREEN, printable: true, locked: false, visible: true },
-        { name: "Placebox - Autoloading the one up file", color: UIColors.RED, printable: true, locked: false, visible: true },
+        { name: "Artwork", color: UIColors.GRASS_GREEN, printable: true, locked: false, visible: true },
+        { name: "Placebox - Autoloading the one up file", color: UIColors.GREEN, printable: true, locked: false, visible: true },
         { name: "Background / Paper", color: UIColors.WHITE, printable: true, locked: true, visible: true }
     ];
 
