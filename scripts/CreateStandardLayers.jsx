@@ -118,5 +118,5 @@
         }
     }
 
-    alert("Standard layers have been created and ordered successfully!\n\nScript by Roger Jemterud (GitHub: RzrZrx)");
+    alert("Standard layers have been created and ordered successfully!\n\nScript by Roger Jemterud (GitHub: RzrZrx)\nLicense: MIT");
 })();
