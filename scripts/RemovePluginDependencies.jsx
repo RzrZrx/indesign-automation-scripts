@@ -7,7 +7,7 @@
 
 (function () {
     // 1. Prompt the user to select a source folder containing InDesign files using a custom dialog
-    var sourceFolder = (function () {
+    var promptResult = (function () {
         var dialog = new Window("dialog", "Remove Plugin Dependencies");
         dialog.orientation = "column";
         dialog.alignChildren = ["left", "top"];
@@ -60,6 +60,12 @@
             }
         };
 
+        var optionsGroup = dialog.add("group");
+        optionsGroup.orientation = "row";
+        optionsGroup.alignChildren = ["left", "center"];
+        optionsGroup.margins.top = 5;
+        var keepIdmlCheckbox = optionsGroup.add("checkbox", undefined, "Keep a copy of the .idml file");
+
         var bottomGroup = dialog.add("group");
         bottomGroup.orientation = "row";
         bottomGroup.alignChildren = ["fill", "center"];
@@ -89,13 +95,13 @@
         var cancelBtn = btnGroup.add("button", undefined, "Cancel", { name: "cancel" });
         var okBtn = btnGroup.add("button", undefined, "OK", { name: "ok" });
 
-        var selectedFolder = null;
+        var result = null;
 
         okBtn.onClick = function () {
             if (pathInput.text !== "") {
                 var f = new Folder(pathInput.text);
                 if (f.exists) {
-                    selectedFolder = f;
+                    result = { folder: f, keepIdml: keepIdmlCheckbox.value };
                     dialog.close(1);
                 } else {
                     alert("The specified folder does not exist. Please check the path.");
@@ -110,15 +116,18 @@
         };
 
         if (dialog.show() === 1) {
-            return selectedFolder;
+            return result;
         }
         return null;
     })();
 
     // Check if the user selected a folder
-    if (!sourceFolder) {
+    if (!promptResult) {
         return; // User canceled the dialog
     }
+
+    var sourceFolder = promptResult.folder;
+    var keepIdml = promptResult.keepIdml;
 
     // Find all .indd files recursively in the selected folder
     var resultFiles = [];
@@ -188,8 +197,8 @@
             newDoc.close(SaveOptions.NO);
             newDoc = null;
 
-            // Delete the temporary IDML file
-            if (idmlFile.exists) {
+            // Delete the temporary IDML file if not configured to keep it
+            if (!keepIdml && idmlFile.exists) {
                 idmlFile.remove();
             }
 

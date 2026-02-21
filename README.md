@@ -8,10 +8,11 @@ A collection of Adobe InDesign ExtendScripts (`.jsx`) for automating common layo
 When you open an InDesign file that uses a plugin you do not have installed, InDesign typically displays a "Missing Plugins" warning. This script bypasses those warnings, silently exports the document to IDML format (which strips out unknown plugin data), and then immediately re-imports and saves it as a clean `.indd` file.
 
 ### Features
-- **ScriptUI Dialog:** Includes a clean UI to select or paste a target folder path.
+- **ScriptUI Dialog:** Includes a clean UI to select or paste a target folder path and configure settings.
 - **Recursive Scanning:** Automatically scans the selected folder and all of its subfolders for `.indd` files.
 - **Silent Processing:** Bypasses "Missing Plugin" and "Missing Font" alerts to allow for fast, bulk processing.
 - **In-Place Saving:** Saves the cleaned `.indd` files next to the originals.
+- **Keep IDML Option:** Optionally choose to keep the generated `.idml` files alongside the processed `.indd` files.
 - **Auto-Renaming:** Appends `_RemovedPluginDependencies.indd` to the processed files.
 - **Safety Checks:** Ignores already processed files to prevent infinite loops and gracefully handles locked or corrupted files without crashing.
 
