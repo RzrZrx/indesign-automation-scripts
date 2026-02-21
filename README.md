@@ -12,6 +12,7 @@ When you open an InDesign file that uses a plugin you do not have installed, InD
 - **Recursive Scanning:** Automatically scans the selected folder and all of its subfolders for `.indd` files.
 - **Silent Processing:** Bypasses "Missing Plugin" and "Missing Font" alerts to allow for fast, bulk processing.
 - **In-Place Saving:** Saves the cleaned `.indd` files next to the originals.
+- **Overwrite Original (Destructive):** An optional destructive mode that completely overwrites the original `.indd` file instead of creating a new copy.
 - **Keep IDML Option:** Optionally choose to keep the generated `.idml` files alongside the processed `.indd` files.
 - **Auto-Renaming:** Appends `_RemovedPluginDependencies.indd` to the processed files.
 - **Safety Checks:** Ignores already processed files to prevent infinite loops and gracefully handles locked or corrupted files without crashing.

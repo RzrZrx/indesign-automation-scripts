@@ -61,10 +61,11 @@
         };
 
         var optionsGroup = dialog.add("group");
-        optionsGroup.orientation = "row";
+        optionsGroup.orientation = "column";
         optionsGroup.alignChildren = ["left", "center"];
         optionsGroup.margins.top = 5;
         var keepIdmlCheckbox = optionsGroup.add("checkbox", undefined, "Keep a copy of the .idml file");
+        var overwriteCheckbox = optionsGroup.add("checkbox", undefined, "Overwrite original .indd file (Destructive)");
 
         var bottomGroup = dialog.add("group");
         bottomGroup.orientation = "row";
@@ -101,7 +102,11 @@
             if (pathInput.text !== "") {
                 var f = new Folder(pathInput.text);
                 if (f.exists) {
-                    result = { folder: f, keepIdml: keepIdmlCheckbox.value };
+                    result = {
+                        folder: f,
+                        keepIdml: keepIdmlCheckbox.value,
+                        overwriteOriginal: overwriteCheckbox.value
+                    };
                     dialog.close(1);
                 } else {
                     alert("The specified folder does not exist. Please check the path.");
@@ -128,6 +133,7 @@
 
     var sourceFolder = promptResult.folder;
     var keepIdml = promptResult.keepIdml;
+    var overwriteOriginal = promptResult.overwriteOriginal;
 
     // Find all .indd files recursively in the selected folder
     var resultFiles = [];
@@ -176,7 +182,8 @@
             doc = app.open(file, false);
 
             // 4. Export the file to IDML format temporarily in the same folder
-            var idmlFileName = file.name.replace(/\.indd$/i, "_RemovedPluginDependencies.idml");
+            var suffix = overwriteOriginal ? "" : "_RemovedPluginDependencies";
+            var idmlFileName = file.name.replace(/\.indd$/i, suffix + ".idml");
             var idmlFile = new File(file.parent.fsName + "/" + idmlFileName);
             doc.exportFile(ExportFormat.INDESIGN_MARKUP, idmlFile);
 
@@ -189,7 +196,7 @@
             newDoc = app.open(idmlFile, false);
 
             // Save it back as a new .indd file in the same folder with the suffix
-            var newFileName = file.name.replace(/\.indd$/i, "_RemovedPluginDependencies.indd");
+            var newFileName = file.name.replace(/\.indd$/i, suffix + ".indd");
             var newInddFile = new File(file.parent.fsName + "/" + newFileName);
             newDoc.save(newInddFile);
 
