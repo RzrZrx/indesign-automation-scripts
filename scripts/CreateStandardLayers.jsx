@@ -21,7 +21,7 @@
     var doc = app.activeDocument;
 
     // --- Add kiss-cut Spot Color ---
-    var kissCutColorName = "kiss-cut";
+    var kissCutColorName = "Kiss-cut";
     var kissCutColor = doc.colors.itemByName(kissCutColorName);
 
     // Check if the color already exists
@@ -36,7 +36,7 @@
     }
 
     // --- Add die-cut Spot Color ---
-    var dieCutColorName = "die-cut";
+    var dieCutColorName = "Die-cut";
     var dieCutColor = doc.colors.itemByName(dieCutColorName);
 
     // Check if the color already exists
@@ -51,7 +51,7 @@
     }
 
     // --- Add Background Color (White) ---
-    var whiteColorName = "White";
+    var whiteColorName = "Background";
     var whiteColor = doc.colors.itemByName(whiteColorName);
 
     // Check if the color already exists
@@ -68,13 +68,13 @@
     // Define the standard layers in order from TOP to BOTTOM
     // You can customize the name, color, and whether it prints or not
     var standardLayers = [
-        { name: "Thumbnail", color: UIColors.YELLOW, printable: true, locked: false },
-        { name: "kiss-cut", color: UIColors.RED, printable: true, locked: true },
-        { name: "die-cut", color: UIColors.ORANGE, printable: true, locked: true },
-        { name: "Guides", color: UIColors.CYAN, printable: false, locked: true },
-        { name: "Artwork", color: UIColors.GREEN, printable: true, locked: false },
-        { name: "Placebox - Autoloading the one up file", color: UIColors.MAGENTA, printable: true, locked: false },
-        { name: "Background / Paper", color: UIColors.WHITE, printable: true, locked: true }
+        { name: "Thumbnail", color: UIColors.YELLOW, printable: true, locked: false, visible: false },
+        { name: "Kiss-cut", color: UIColors.CYAN, printable: true, locked: true, visible: true },
+        { name: "Die-cut", color: UIColors.MAGENTA, printable: true, locked: true, visible: true },
+        { name: "Guides", color: UIColors.ORANGE, printable: false, locked: true, visible: true },
+        { name: "Artwork", color: UIColors.GREEN, printable: true, locked: false, visible: true },
+        { name: "Placebox - Autoloading the one up file", color: UIColors.RED, printable: true, locked: false, visible: true },
+        { name: "Background / Paper", color: UIColors.WHITE, printable: true, locked: true, visible: true }
     ];
 
     // By looping backwards (from bottom to top) and moving each layer to the top of the stack,
@@ -95,6 +95,9 @@
         layer.locked = false;
         layer.layerColor = config.color;
         layer.printable = config.printable;
+        if (typeof config.visible !== 'undefined') {
+            layer.visible = config.visible;
+        }
 
         // 4. Move to the very top of the layer list
         // Since we are processing the bottom-most layer first, it gets pushed down as we loop.
