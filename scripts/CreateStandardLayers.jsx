@@ -50,6 +50,21 @@
         });
     }
 
+    // --- Add Background Color (White) ---
+    var whiteColorName = "White";
+    var whiteColor = doc.colors.itemByName(whiteColorName);
+
+    // Check if the color already exists
+    if (!whiteColor.isValid) {
+        // Create the new color
+        whiteColor = doc.colors.add({
+            name: whiteColorName,
+            model: ColorModel.PROCESS,
+            space: ColorSpace.CMYK,
+            colorValue: [0, 0, 0, 0] // White
+        });
+    }
+
     // Define the standard layers in order from TOP to BOTTOM
     // You can customize the name, color, and whether it prints or not
     var standardLayers = [
