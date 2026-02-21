@@ -1,6 +1,6 @@
 // RemovePluginDependencies.jsx
 // Automates the removal of third-party plugin dependencies from InDesign files.
-// It works by exporting to IDML and immediately saving back as INDD.
+// It works by exporting to .idml and immediately saving back as .indd.
 // 
 // Author: Roger Jemterud (https://github.com/RzrZrx)
 // License: MIT
@@ -20,7 +20,7 @@
         infoGroup.spacing = 5;
 
         infoGroup.add("statictext", undefined, "This script automatically removes third-party plugin dependencies");
-        infoGroup.add("statictext", undefined, "from InDesign documents by exporting to IDML and back to INDD.");
+        infoGroup.add("statictext", undefined, "from InDesign documents by exporting to .idml and back to .indd.");
         var t3 = infoGroup.add("statictext", undefined, "• Scans the selected folder AND all subfolders recursively.");
         var t4 = infoGroup.add("statictext", undefined, "• Saves stripped files next to originals.");
         var t5 = infoGroup.add("statictext", undefined, "• Suffix added: '_RemovedPluginDependencies.indd'");
