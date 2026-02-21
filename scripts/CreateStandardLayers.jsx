@@ -65,6 +65,21 @@
         });
     }
 
+    // --- Add Thumbnail Color (10% Black) ---
+    var thumbnailColorName = "Thumbnail";
+    var thumbnailColor = doc.colors.itemByName(thumbnailColorName);
+
+    // Check if the color already exists
+    if (!thumbnailColor.isValid) {
+        // Create the new color
+        thumbnailColor = doc.colors.add({
+            name: thumbnailColorName,
+            model: ColorModel.PROCESS,
+            space: ColorSpace.CMYK,
+            colorValue: [0, 0, 0, 10] // 10% Black
+        });
+    }
+
     // Define the standard layers in order from TOP to BOTTOM
     // You can customize the name, color, and whether it prints or not
     var standardLayers = [

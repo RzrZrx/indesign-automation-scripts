@@ -28,7 +28,7 @@ Automates the creation of a standard, organized set of layers in the active InDe
 - **Auto-Creation:** Instantly builds a standard 7-layer structure (Thumbnail, kiss-cut, die-cut, Guides, Artwork, Placebox, Background).
 - **Smart Properties:** Automatically locks utility layers (kiss-cut, die-cut, Guides, Background) and sets them to print/non-print as needed.
 - **Color Coding:** Applies specific layer colors to keep your document visually organized.
-- **Spot & Process Colors:** Automatically checks for and creates `100% Cyan` ("kiss-cut") and `100% Magenta` ("die-cut") Spot Colors, plus a `CMYK 0,0,0,0` ("White") Process Color in your Swatches panel.
+- **Spot & Process Colors:** Automatically checks for and creates `100% Cyan` ("kiss-cut") and `100% Magenta` ("die-cut") Spot Colors, plus `CMYK 0,0,0,0` ("Background") and `CMYK 0,0,0,20` ("Thumbnail") Process Colors in your Swatches panel.
 - **Stacking Order:** Ensures the layers are always ordered correctly from top to bottom, even if they already existed.
 
 ---
