@@ -176,7 +176,7 @@
             doc = app.open(file, false);
 
             // 4. Export the file to IDML format temporarily in the same folder
-            var idmlFileName = file.name.replace(/\.indd$/i, ".idml");
+            var idmlFileName = file.name.replace(/\.indd$/i, "_RemovedPluginDependencies.idml");
             var idmlFile = new File(file.parent.fsName + "/" + idmlFileName);
             doc.exportFile(ExportFormat.INDESIGN_MARKUP, idmlFile);
 
